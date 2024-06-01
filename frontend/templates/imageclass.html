@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>  
+<main>
+    {% block content %}
+    <section class="about section" id="about">
+        <h2 class="section__title">Image Prediction</h2>
+        <span class="section__subtitle"> Upload an Image</span>
+        <div data-aos="fade-left" class="about__container container grid">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="image">Select Image:</label>
+                <input class="button button--flex" type="file" name="image" />
+                <input class="button button--flex" type="submit" name="submit" value="Upload" />
+            </form>
+            
+            <div class="about__data">
+                <p class="about__description">
+                    Hi!, this is my unfinished AI Model that can predict your hand gesture,
+                    but now it's only limited to rock, paper, scissors shape. <br>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div data-aos="fade-left" class="about__container container grid">
+        <p class="about__description">Prediction Result</p>
+
+        <p class="about__description">The predicted name for the uploaded image is: <strong id="prediction">{{ predicted_class }}</strong></p>
+    </div>
+        {% endblock %}
+</main>
+</body>
